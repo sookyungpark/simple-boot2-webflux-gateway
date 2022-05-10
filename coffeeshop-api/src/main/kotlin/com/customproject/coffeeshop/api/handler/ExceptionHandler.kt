@@ -5,7 +5,6 @@ import com.customproject.coffeeshop.api.exception.HandlerNotFoundException
 import com.customproject.coffeeshop.api.support.CoffeeshopConstants.Companion.HEADER_COFFEESHOP_ERROR_KEY
 import com.customproject.coffeeshop.domain.ErrorResponse
 import mu.KotlinLogging
-import org.springframework.boot.autoconfigure.web.ResourceProperties
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler
 import org.springframework.boot.web.reactive.error.ErrorAttributes
 import org.springframework.context.ApplicationContext
@@ -20,15 +19,16 @@ import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.boot.autoconfigure.web.WebProperties.Resources
 import reactor.core.publisher.Mono
 
 @Order(-2)
 @Component
 public class ExceptionHandler(serverCodecConfigurer: ServerCodecConfigurer,
                               errorAttributes: ErrorAttributes,
-                              resourceProperties: ResourceProperties,
+                              resources: Resources,
                               applicationContext: ApplicationContext)
-        : AbstractErrorWebExceptionHandler(errorAttributes, resourceProperties, applicationContext) {
+        : AbstractErrorWebExceptionHandler(errorAttributes, resources, applicationContext) {
 
     companion object {
         private const val ATTRIBUTE_MESSAGE_KEY = "message"

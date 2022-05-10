@@ -1,13 +1,13 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.4.RELEASE'
+        springBootVersion = '2.6.7'
         artifactRepoBase = "http://oss.jfrog.org/artifactory"
         baseVersion = "1.0.1"
         baseLibVersion = "3.0.0-SNAPSHOT"
         baseAuthVersion = "3.0.0-SNAPSHOT"
         configurationVersion = "3.0.0-SNAPSHOT"
-        jacksonVersion = "2.9.8"
-        kotlinVersion = '1.3.11'
+        jacksonVersion = "2.13.2"
+        kotlinVersion = '1.6.21'
         micrometerVersion = '1.1.3'
         platformLogVersion = "1.2.0"
         serviceProjects = [ "coffeeshop-api" ]
@@ -42,8 +42,8 @@ allprojects {
 
     apply plugin: 'io.spring.dependency-management'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     group = 'com.customproject.coffeeshop'
 
@@ -91,9 +91,6 @@ subprojects {
 
         implementation("org.springframework.boot:spring-boot-starter-reactor-netty")
         implementation("io.netty:netty-buffer")
-
-        implementation(group: "io.projectreactor", name: "reactor-core", version: '3.3.2.RELEASE')
-        implementation(group: 'io.projectreactor.addons', name: 'reactor-extra', version: '3.3.2.RELEASE')
 
         implementation(group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.+')
         implementation(group: 'io.github.microutils', name: 'kotlin-logging', version: '1.6.10')

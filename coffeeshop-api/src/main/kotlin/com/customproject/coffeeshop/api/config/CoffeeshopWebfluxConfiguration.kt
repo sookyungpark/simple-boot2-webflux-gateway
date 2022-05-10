@@ -22,7 +22,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry
 import io.netty.channel.ChannelOption
 import io.netty.handler.timeout.ReadTimeoutHandler
 import io.netty.handler.timeout.WriteTimeoutHandler
-import org.springframework.boot.autoconfigure.web.ResourceProperties
+import org.springframework.boot.autoconfigure.web.WebProperties.Resources
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes
 import org.springframework.boot.web.reactive.error.ErrorAttributes
 import org.springframework.context.annotation.Bean
@@ -85,8 +85,8 @@ public class CoffeeshopWebfluxConfiguration(private val appProperties: Applicati
     }
 
     @Bean
-    fun resourceProperties(): ResourceProperties {
-        return ResourceProperties()
+    fun resources(): Resources {
+        return Resources()
     }
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {

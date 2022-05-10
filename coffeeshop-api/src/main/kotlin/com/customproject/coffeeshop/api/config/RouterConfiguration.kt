@@ -103,23 +103,28 @@ public class RouterConfiguration(private val coffeeshopApiProperties: Coffeeshop
     fun proxyRouteLocator(builder: RouteLocatorBuilder): RouteLocator = builder.routes()
             .route {
                 it
-                        .path("/api/internal/**")
-                        .uri(coffeeshopApiProperties.httpClient?.baseUrl)
                         .order(2)
-                        .filter { exchange, chain ->
-                            exchange.response.beforeCommit {
-                                exchange.response.statusCode = HttpStatus.FORBIDDEN
-                                Mono.empty()
+                        .path("/api/internal/**")
+                        .filters { filterSpec ->
+                            filterSpec.filter { exchange, chain ->
+                                exchange.response.beforeCommit {
+                                    exchange.response.statusCode = HttpStatus.FORBIDDEN
+                                    Mono.empty()
+                                }
+                                return@filter chain.filter(exchange)
                             }
-                            return@filter chain.filter(exchange)
                         }
+                        .uri(coffeeshopApiProperties.httpClient?.baseUrl)
             }
             .route {
                 it
-                        .path("/api/**")
-                        .uri(coffeeshopApiProperties.httpClient?.baseUrl)
                         .order(3)
-                        .filter(proxyRequestLoggingFilter)
+                        .path("/api/**")
+                        .filters { filterSpec ->
+                            filterSpec.filter(proxyRequestLoggingFilter)
+                        }
+                        .uri(coffeeshopApiProperties.httpClient?.baseUrl)
+
             }
             .build()
 }

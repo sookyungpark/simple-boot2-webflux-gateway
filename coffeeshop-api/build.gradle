@@ -9,13 +9,13 @@ apply plugin: 'kotlin-spring'
 compileKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -23,37 +23,37 @@ version '1.0.0'
 ext['snippetsDir'] = file('build/generated-snippets')
 
 dependencies {
-    compile project(':coffeeshop-domain')
+    implementation project(':coffeeshop-domain')
 
-    compile("org.springframework.cloud:spring-cloud-starter-gateway:2.1.1.RELEASE")
+    implementation("org.springframework.cloud:spring-cloud-starter-gateway:3.1.2")
 
     // kotlin
-    compile(group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion)
-    compile(group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion)
+    implementation(group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion)
+    implementation(group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion)
 
     // etc
-    compile(group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.+')
+    implementation(group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.+')
 
-    compile('com.auth0:java-jwt:3.2.0')
-    compile('io.dropwizard.metrics:metrics-core:4.1.0')
+    implementation('com.auth0:java-jwt:3.2.0')
+    implementation('io.dropwizard.metrics:metrics-core:4.1.0')
 
-    compile group: 'io.netty', name: 'netty-resolver-dns', version: '4.1.43.Final'
-    compile group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.8.0'
-    compile group: 'com.google.guava', name: 'guava', version: 'r05'
+    implementation group: 'io.netty', name: 'netty-resolver-dns', version: '4.1.43.Final'
+    implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.8.0'
+    implementation group: 'com.google.guava', name: 'guava', version: 'r05'
 
-    compile group: 'org.jolokia', name: 'jolokia-core', version: '1.6.0'
+    implementation group: 'org.jolokia', name: 'jolokia-core', version: '1.6.0'
 
-    compile('org.springframework.restdocs:spring-restdocs-restassured')
-    compile "org.springframework.restdocs:spring-restdocs-webtestclient:2.0.2.RELEASE"
+    implementation('org.springframework.restdocs:spring-restdocs-restassured')
+    implementation "org.springframework.restdocs:spring-restdocs-webtestclient:2.0.2.RELEASE"
     asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.2.RELEASE"
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'io.rest-assured:rest-assured:3.0.2'
-    testCompile 'org.springframework.restdocs:spring-restdocs-restassured'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'io.rest-assured:rest-assured:3.0.2'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.8.RELEASE'
-    testCompile 'com.squareup.okhttp3:okhttp:4.0.1'
-    testCompile 'com.squareup.okhttp3:mockwebserver:4.0.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.8.RELEASE'
+    testImplementation 'com.squareup.okhttp3:okhttp:4.0.1'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.0.1'
 }
 
 test {
