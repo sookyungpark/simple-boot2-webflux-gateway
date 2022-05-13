@@ -1,10 +1,8 @@
 package com.customproject.coffeeshop.api.handler
 
 import com.customproject.coffeeshop.api.exception.CoffeeshopException
-import com.customproject.coffeeshop.api.exception.HandlerNotFoundException
 import com.customproject.coffeeshop.api.support.CoffeeshopConstants.Companion.HEADER_COFFEESHOP_ERROR_KEY
 import com.customproject.coffeeshop.domain.ErrorResponse
-import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler
 import org.springframework.boot.web.reactive.error.ErrorAttributes
 import org.springframework.context.ApplicationContext
