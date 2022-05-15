@@ -1,10 +1,14 @@
 plugins {
-    id "com.moowork.node" version "0.13"
-    id "org.asciidoctor.convert" version "1.5.3"
+    id 'kotlin'
+    id 'kotlin-spring'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
-apply plugin: 'kotlin'
-apply plugin: 'kotlin-spring'
+repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "https://repo.maven.apache.org/maven2" }
+}
 
 compileKotlin {
     kotlinOptions {
@@ -44,8 +48,8 @@ dependencies {
     implementation group: 'org.jolokia', name: 'jolokia-core', version: '1.6.0'
 
     implementation('org.springframework.restdocs:spring-restdocs-restassured')
-    implementation "org.springframework.restdocs:spring-restdocs-webtestclient:2.0.2.RELEASE"
-    asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.2.RELEASE"
+    implementation("org.springframework.restdocs:spring-restdocs-webtestclient:2.0.6.RELEASE")
+    //asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.2.RELEASE"
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'io.rest-assured:rest-assured:3.0.2'
